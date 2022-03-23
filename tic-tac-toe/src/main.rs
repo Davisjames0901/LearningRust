@@ -21,23 +21,19 @@ pub fn main() {
 
 fn check_win(game: &GameState) -> bool {
     //check our horizontal lines
-    for i in 0..2 {
-        if is_line(game.board, 0 + i, 3 + i, 6 + i) {
+    for i in 0..3 {
+        if is_line(game.board, 0+i, 3+i, 6+i) {
             return true;
         }
     }
 
-    //Is there really not a normal for loop in this language??? oh, this is our vertical lines
-    let mut i = 0;
-    loop {
-        if is_line(game.board, 0 + i, 1 + i, 2 + i) {
+    //check our vertical lines
+    for i in 0..3 * 3 {
+        if is_line(game.board,0+i, 1+i,2+i) {
             return true;
         }
-        if i > 5 {
-            break ();
-        }
-        i += 3;
     }
+     
     //Here are the diagonal lines
     if is_line(game.board, 0, 4, 8) || is_line(game.board, 6, 4, 2) {
         return true;
