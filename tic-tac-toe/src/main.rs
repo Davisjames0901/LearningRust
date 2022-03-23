@@ -10,6 +10,8 @@ pub fn main() {
         game.current_player = flip(&game);
         // this prints the game state using the impl for fmt::Display (seen below)
         println!("{}", game);
+        //tell the player to make their move
+        println!("Make your move {}!", game.current_player);
         //Get the move and set the board (That is why the game is passed with the mut flag)
         make_move(&mut game);
         //check to see if we win
@@ -21,14 +23,14 @@ pub fn main() {
 
 fn check_win(game: &GameState) -> bool {
     //check our horizontal lines
-    for i in 0..3 {
+    for i in 0..2 {
         if is_line(game.board, 0+i, 3+i, 6+i) {
             return true;
         }
     }
 
     //check our vertical lines
-    for i in 0..3 * 3 {
+    for i in 0..2 * 3 {
         if is_line(game.board,0+i, 1+i,2+i) {
             return true;
         }
@@ -100,11 +102,9 @@ impl fmt::Display for GameState {
                     ---------    ---------\n\
                     4 | 5 | 6    {} | {} | {}\n\
                     ---------    ---------\n\
-                    1 | 2 | 3    {} | {} | {}\n\n\
-                    {} Make your move!", 
+                    1 | 2 | 3    {} | {} | {}", 
             self.board[6], self.board[7], self.board[8], 
             self.board[3], self.board[4], self.board[5],
-            self.board[0], self.board[1], self.board[2],
-            self.current_player)
+            self.board[0], self.board[1], self.board[2])
     }
 }
